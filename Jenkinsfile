@@ -4,7 +4,7 @@ node {
         // Get some code from a GitHub repository
         git url: 'https://github.com/michaelmcclintock/SharePoint2016.git' 
         
-        dir('jenkins') {
+        dir('terraform') {
           git url: 'https://github.com/michaelmcclintock/terraform.git'
         }
     stage 'Stage 2'
