@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "resources/terraform/modules/vpc"
+  source = "terraform/modules/vpc"
 
   name = "test-vpc"
 
