@@ -6,7 +6,7 @@ node {
         dir('terraform') {
           git url: 'https://github.com/michaelmcclintock/terraform.git'
         }
-    stage 'Stage 2'
+    stage 'Check Version'
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
         env.PATH = "${tfHome}:${env.PATH}"
   
