@@ -13,6 +13,7 @@ module "vpc" {
 
   tags {
     "Terraform" = "true"
-    "Environment" = "${var.environment}"
+    "Environment" = "Dev"
+    "Owner" = "mike.mcclintock@sonos.com"
   }
 }
