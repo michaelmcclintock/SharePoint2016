@@ -44,7 +44,7 @@ node {
             sh "terraform --version"
     
         stage name: 'Remove', concurrency: 1
-            def deploy_validation = input(
+            def remove_validation = input(
                 id: 'Remove',
                 message: 'Please review the resources in AWS and click continue to destroy the plan',
                 type: "boolean")
