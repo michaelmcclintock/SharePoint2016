@@ -30,8 +30,17 @@ node {
                 
                 sh "terraform get"
                 
-                sh "set +e; terraform plan -var 'access_key=$AWS_ACCESS_KEY_ID' -var 'secret_key=$AWS_SECRET_ACCESS_KEY'"
+                sh "set +e; terraform plan -var 'access_key=$AWS_ACCESS_KEY_ID' -var 'secret_key=$AWS_SECRET_ACCESS_KEY' --out plan"
                 
                 
             }
+    
+        stage name: 'deploy', concurrency: 1
+            def deploy_validation = input(
+                id: 'Deploy',
+                message: 'Let\'s continue the deploy plan',
+                type: "boolean")
+             
+            sh "terraform --version"
+    
 }
