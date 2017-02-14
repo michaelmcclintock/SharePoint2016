@@ -47,7 +47,7 @@ node {
         stage name: 'Deploy', concurrency: 1
             def deploy_validation = input(
                 id: 'Deploy',
-		    message: 'Let\'s continue the deploy plan\n {$tfplan}',
+		    message: "Let\'s continue the deploy plan\n {$tfplan}",
                 type: "boolean")
              
             sh "terraform --version"
