@@ -43,13 +43,15 @@ node {
 
                 sh "set +e; terraform plan -var 'access_key=$AWS_ACCESS_KEY_ID' -var 'secret_key=$AWS_SECRET_ACCESS_KEY' -out=plan.out;echo \$? > status"
                 tfPlan = '${plan.out}';
+		    
+		def deploy_validation = input(
+                id: 'Deploy',
+		    message: "Please review the plan above and lick proceed if you are good with the changes",
+                type: "boolean")
             }
     
         stage name: 'Deploy', concurrency: 1
-            def deploy_validation = input(
-                id: 'Deploy',
-		    message: "Let\'s continue the deploy plan\n {$tfPlan}",
-                type: "boolean")
+            
              
             sh "terraform --version"
     
