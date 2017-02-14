@@ -8,7 +8,7 @@ node {
         }
     stage 'Check Version'
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-	def TfPlan = ""
+	def tfPlan = ""
         env.PATH = "${tfHome}:${env.PATH}"
   
         // Mark the code build 'plan'....
@@ -47,7 +47,7 @@ node {
         stage name: 'Deploy', concurrency: 1
             def deploy_validation = input(
                 id: 'Deploy',
-		    message: "Let\'s continue the deploy plan\n {$tfplan}",
+		    message: "Let\'s continue the deploy plan\n {$tfPlan}",
                 type: "boolean")
              
             sh "terraform --version"
