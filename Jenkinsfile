@@ -8,6 +8,7 @@ node {
         }
     stage 'Check Version'
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+	def TfPlan = ""
         env.PATH = "${tfHome}:${env.PATH}"
   
         // Mark the code build 'plan'....
@@ -40,13 +41,13 @@ node {
                 sh "terraform get"
 
                 sh "set +e; terraform plan -var 'access_key=$AWS_ACCESS_KEY_ID' -var 'secret_key=$AWS_SECRET_ACCESS_KEY' -out=plan.out;echo \$? > status"
-                
+                tfPlan = '${plan.out}';
             }
     
         stage name: 'Deploy', concurrency: 1
             def deploy_validation = input(
                 id: 'Deploy',
-                message: 'Let\'s continue the deploy plan',
+		    message: 'Let\'s continue the deploy plan\n {$tfplan}',
                 type: "boolean")
              
             sh "terraform --version"
