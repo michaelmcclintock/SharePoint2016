@@ -7,7 +7,7 @@ node {
           git url: 'https://github.com/michaelmcclintock/terraform.git'
         }
 	
-	office365ConnectorSend message:"SharePoint 2016 Jenkins Build', status:'Checkout', webhookUrl:'https://outlook.office.com/webhook/6e869d75-dd30-45e4-a934-4676087bdb09@6f3b62d5-d8c8-4e11-affa-28d99dfcceb9/JenkinsCI/d84a85931c3342e785dc76eb160777e0/cc9f5259-d8de-4963-ae2d-1e843b2d4baf'
+	office365ConnectorSend message:'SharePoint 2016 Jenkins Build', status:'Checkout', webhookUrl:'https://outlook.office.com/webhook/6e869d75-dd30-45e4-a934-4676087bdb09@6f3b62d5-d8c8-4e11-affa-28d99dfcceb9/JenkinsCI/d84a85931c3342e785dc76eb160777e0/cc9f5259-d8de-4963-ae2d-1e843b2d4baf'
     stage 'Check Version'
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
 	def tfPlan = ""
