@@ -38,7 +38,13 @@ node {
                 //sh "terraform remote config -backend=s3 -backend-config='bucket=us-west-2a.terraform.remotestate.sb' -backend-config='key=JenkinsPlayground/terraform.tfstate' -backend-config='region=us-west-2'"
                 //sh "terraform remote config -backend=local -backend-config='path=terraform.tfstate'"
                 //Remove the terraform state file so we always start from a clean state
-                
+                terraform remote config \
+		    -backend=s3 \
+		    -backend-config="bucket=us-west-2a.terraform.remotestate.sb" \
+		    -backend-config="key=terraform.tfstate" \
+		    -backend-config="region=us-west-2" \
+		    -backend-config="encrypt=true"
+		    
                 sh "terraform get"
 
                 sh "set +e; terraform plan -var 'access_key=$AWS_ACCESS_KEY_ID' -var 'secret_key=$AWS_SECRET_ACCESS_KEY' -out=plan.out;echo \$? > status"
