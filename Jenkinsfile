@@ -51,17 +51,6 @@ node {
                 type: "boolean")
             }
     
-        stage name: 'Deploy', concurrency: 1
-            
-             
-            sh "terraform --version"
-    
-        stage name: 'Remove', concurrency: 1
-            def remove_validation = input(
-                id: 'Remove',
-                message: 'Please review the resources in AWS and click continue to destroy the plan',
-                type: "boolean")
-             
-            sh "terraform --version"
-    
+        stage name: 'Ansbile', concurrency: 1
+            sh "ansible --version"
 }
