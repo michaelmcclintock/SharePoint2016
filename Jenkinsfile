@@ -14,9 +14,16 @@ node {
         stage name: 'Version'
             // Output Terraform version
             sh "terraform --version"
-                
 
-    
-        stage name: 'Ansbile', concurrency: 1
-            sh "ansible --version"
+	stage name: 'Plan'
+            // Output Terraform version
+            sh "terraform get"
+	    sh "terraform plan"
+	
+	stage name: 'Apply'
+            // Output Terraform version
+            sh "terraform apply"
+	    
+	stage name: 'Destroy'
+		sh "terraform destroy"
 }
