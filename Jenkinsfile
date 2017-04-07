@@ -25,5 +25,10 @@ node {
             sh "terraform apply"
 	    
 	stage name: 'Destroy'
-		sh "terraform destroy"
+		def remove_validation = input(
+ -                id: 'Remove',
+ -                message: 'Please review the resources in AWS and click continue to destroy the plan',
+ -                type: "boolean")
+ -             
+ -            sh "terraform destroy"
 }
